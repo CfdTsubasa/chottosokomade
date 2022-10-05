@@ -26,6 +26,11 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 gem 'cssbundling-rails'
+gem 'carrierwave'
+
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
