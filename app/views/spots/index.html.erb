@@ -1,2 +1,23 @@
-<h1>Spots#index</h1>
-<p>Find me in app/views/spots/index.html.erb</p>
+<div class="text-center">
+  <h1 class="text-3xl font-semibold underline underline-offset-8 decoration-1">スポット一覧</h1>
+</div>
+<% if current_user and @spots.present? %>
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
+    <% @spots.each do |spot| %>
+      <div class="p-3">
+        <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"} do%>
+          <% if spot.images[0].present? %>
+            <%= image_tag spot.images[0].url, class: "object-cover h-48 w-80 mx-auto"%>
+          <% else %>
+            <%= image_tag "/assets/default.png", class: "object-cover h-48 w-80 mx-auto"%>
+          <% end %>
+          <div>
+            <h5 class="mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= spot.name %></h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><%= spot.comment %></p>
+            投稿者(Author):<%= spot.user.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
