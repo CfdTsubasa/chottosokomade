@@ -1,28 +1,30 @@
-<div class="pt-16 pb-20 px-32 my-5 block text-center max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-  <h2 class="text-3xl font-semibold">Log in</h2>
-  <div class="text-xl">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field my-2">
-        <%= f.label :email, class: "block mb-5 text-xl hover:border-b-4" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+<div class="w-screen flex justify-center" > 
+  <div class="py-16 px-32 my-5 block text-center max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <h2 class="text-3xl font-semibold">Log in</h2>
+    <div class="text-xl">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field my-2">
+          <%= f.label :email, class: "block mb-5 text-xl hover:border-b-4" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-      <div class="field my-2">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
+        <div class="field my-2">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field my-2 hover:border-b">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+        <% if devise_mapping.rememberable? %>
+          <div class="field my-2 hover:border-b">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions my-2">
+          <%= f.submit "Log in" %>
         </div>
       <% end %>
-
-      <div class="actions my-2">
-        <%= f.submit "Log in" %>
-      </div>
-    <% end %>
-    <%= render "users/shared/links" %>
+      <%= render "users/shared/links" %>
+    </div>
   </div>
 </div>
