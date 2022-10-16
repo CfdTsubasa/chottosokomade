@@ -7,6 +7,13 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore test assets
+/public/uploads/*
+
+# Ignore test fixtures
+/test/fixtures/*
+
+.gitignore
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
@@ -41,3 +48,7 @@ yarn-debug.log*
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+app/assets/.DS_Store
+.DS_Store
+app/assets/.DS_Store
+.DS_Store

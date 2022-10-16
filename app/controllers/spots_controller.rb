@@ -20,6 +20,8 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @reviews = Review.where(spot_id: params[:id])
+    @review = Review.new
   end
 
   def edit
