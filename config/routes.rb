@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy" 
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 end
