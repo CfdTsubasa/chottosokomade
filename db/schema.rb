@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_28_041425) do
+ActiveRecord::Schema.define(version: 2022_10_12_163613) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.integer "good"
+    t.integer "user_id", null: false
+    t.integer "spot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_reviews_on_spot_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.string "name"
+    t.text "comment"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.json "images"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.index ["user_id"], name: "index_spots_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +46,12 @@ ActiveRecord::Schema.define(version: 2022_08_28_041425) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "profile"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "spots"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "spots", "users"
 end

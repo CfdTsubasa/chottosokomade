@@ -1,0 +1,20 @@
+<% if @reviews.present? %>
+  <div class="ml-4 my-4">
+    <h1 class="mb-5 text-left text-4xl">Reviews</h1>
+    <% @reviews.each do |review| %>
+      <div class="grid grid-cols-7 gap-5 flex justify-around items-center">
+        <div class="col-span-5">
+          <%= review.comment %>
+        </div>
+        <div class="col-span-2 flex items-center">
+          <div class="mr-5">
+            <%= review.user.name %>
+          </div>
+          <div class="mr-5 rounded-full">
+            <%= image_tag review.user.image.url,:class=> '', :size => '70x70' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
