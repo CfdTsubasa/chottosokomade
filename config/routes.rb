@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
   }
-  resources :spots 
+  resources :spots do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :reviews 
-
+resources :relationships,       only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

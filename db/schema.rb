@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_163613) do
+ActiveRecord::Schema.define(version: 2022_10_19_131451) do
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "spot_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_likes_on_spot_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.string "comment"
@@ -51,6 +70,8 @@ ActiveRecord::Schema.define(version: 2022_10_12_163613) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "likes", "spots"
+  add_foreign_key "likes", "users"
   add_foreign_key "reviews", "spots"
   add_foreign_key "reviews", "users"
   add_foreign_key "spots", "users"

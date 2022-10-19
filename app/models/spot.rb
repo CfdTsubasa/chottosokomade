@@ -1,5 +1,8 @@
 class Spot < ApplicationRecord
   belongs_to :user
+  has_many :likes
+  has_many :liked_users, through: :likes, source: :user
+  
   validates :user_id, presence: true
   mount_uploaders :images, ImageUploader
   after_validation :geocode

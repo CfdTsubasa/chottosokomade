@@ -49,6 +49,9 @@
         <p>投稿者(Author):<%= @spot.user.name %></p>
       <% end %>
       <h3>緯度：<%= @spot.latitude %><br>経度：<%= @spot.longitude %><br>場所：<%= @spot.address %></h3>
+      <div id="like">
+        <%= render 'like', likes: @like, spots: @spot %>
+      </div>
       <% if @spot.latitude.present? %>
         <div class="h-1/2">
           <script src="http://maps.google.com/maps/api/js?key=AIzaSyCr5QofQ0Nu28hWjAnXzOaLp1zG38-LYKY&language=ja"></script>
@@ -104,7 +107,7 @@
       arrows: false,
       slidesToShow:3,
   });
-    $('.slider-modal').slick({
+  $('.slider-modal').slick({
       arrows: true,
       variableWidth: true,
       centerMode:true,
