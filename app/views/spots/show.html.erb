@@ -45,9 +45,6 @@
         <h5 class="mt-2 mb-2 ml-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @spot.name %></h5>
       </div>
       <p class="font-normal text-gray-700 dark:text-gray-400">コメント(Comment):<%= @spot.comment %></p>
-      <%= link_to user_show_path(@spot.user_id) do %>
-        <p>投稿者(Author):<%= @spot.user.name %></p>
-      <% end %>
       <h3>緯度：<%= @spot.latitude %><br>経度：<%= @spot.longitude %><br>場所：<%= @spot.address %></h3>
       <div id="like">
         <%= render 'like', likes: @like, spots: @spot %>
@@ -71,6 +68,21 @@
           </script>
         </div>
       <% end %>
+      <div id="author" class="border border-gray-200 -mt-5 p-5 flex items-center justify-center">
+        <div class="mr-5 rounded-full">
+          <% if @spot.user.image.present? %>
+            <%= image_tag @spot.user.image.url,:class=> '', :size => '50x50', :style => '' %>
+          <% else %>
+            <%= image_tag 'person.png', :size => '65x65' %>
+          <% end%>
+        </div>
+        <%= link_to user_show_path(@spot.user_id) do %>
+          <p class="font-semibold">投稿者(Author):<%= @spot.user.name %></p>
+        <% end %>
+        <div id="follow">
+          <%= render 'follow', spots: @spot, users: @user %>
+        </div>
+      </div>
       <% if @spot.user == current_user %>
         <div class="flex pb-3">
           <%= link_to 'DELETE', "/spots/#{@spot.id}", method: :delete,class: "px-3 py-1 mx-2 border hover:bg-gray-100 hover:white rounded-full", data: {confirm: "削除しますか？"} %>
@@ -87,8 +99,8 @@
       <%= f.text_area :comment, rows:'4',placeholder: "コメントをここに",cols:"40" %>
       <%= f.hidden_field :spot_id, :value => @spot.id %>
       <%= button_tag class: "ml-2", type: 'submit' do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 items-end">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#00885a" width="24" height="24" viewBox="0 0 24 24" stroke="#00885a" class="w-6 h-6 items-end">
+          <path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/>
         </svg>
       <% end %>
     <% end %>
