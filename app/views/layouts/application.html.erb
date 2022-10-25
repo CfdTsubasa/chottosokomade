@@ -11,16 +11,14 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag "application" %>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
-    <%# <div class="h-screen w-screen flex justify-center" > %>
       <%= yield %>
-    <%# </div> %>
   </body>
 </html>
