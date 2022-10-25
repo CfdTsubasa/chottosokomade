@@ -1,12 +1,4 @@
-<style>
-.float_textarea{
-  position: fixed;
-  bottom: 20px;
-  z-index: 20;
-  right: 100px;
-}
-</style>
-<div class="block py-8 mx-32 mt-5 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<div class="block <% if not @reviews.present? %>py-48<% end %> mx-32 mt-5 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
   <div class="grid grid-cols-2 gap-5 flex justify-around">
     <div class="">
       <div class="mx-auto" x-data="{ open: false }">
@@ -68,7 +60,7 @@
           </script>
         </div>
       <% end %>
-      <div id="author" class="border border-gray-200 -mt-5 p-5 flex items-center justify-center">
+      <div id="author" class="border border-gray-200 p-5 rounded-2xl flex items-center justify-center">
         <div class="mr-5 rounded-full">
           <% if @spot.user.image.present? %>
             <%= image_tag @spot.user.image.url,:class=> '', :size => '50x50', :style => '' %>
@@ -94,7 +86,7 @@
   <div id="review">
     <%= render 'review', reviews: @reviews, spots: @spot %>
   </div>
-  <div class="bg-white h-32 absolute border-4 p-4 float_textarea comment_input">
+  <div class="bg-white h-32 absolute rounded-2xl border-4 p-4 float_textarea comment_input">
     <%= form_with model:[@review], data: {remote: true} do |f| %>
       <%= f.text_area :comment, rows:'4',placeholder: "コメントをここに",cols:"40" %>
       <%= f.hidden_field :spot_id, :value => @spot.id %>

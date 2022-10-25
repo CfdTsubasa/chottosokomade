@@ -31,7 +31,7 @@ gem 'carrierwave'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'jquery-rails'
-
+gem 'sass-rails', '>= 6'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
