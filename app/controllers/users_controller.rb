@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @spot = @user.spots.first
+    @spots = @user.spots
+    @like = Like.new
   end
 end

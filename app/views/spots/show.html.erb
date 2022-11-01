@@ -88,7 +88,7 @@
   </div>
   <div class="bg-white h-32 absolute rounded-2xl border-4 p-4 float_textarea comment_input">
     <%= form_with model:[@review], data: {remote: true} do |f| %>
-      <%= f.text_area :comment, rows:'4',placeholder: "コメントをここに",cols:"40" %>
+      <%= f.text_area :comment, rows:'4',placeholder: "コメントをここに",cols:"40",class: "focus:outline-none" %>
       <%= f.hidden_field :spot_id, :value => @spot.id %>
       <%= button_tag class: "ml-2", type: 'submit' do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="#00885a" width="24" height="24" viewBox="0 0 24 24" stroke="#00885a" class="w-6 h-6 items-end">

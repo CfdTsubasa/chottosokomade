@@ -87,3 +87,11 @@
   padding-top: 1rem;
   padding-bottom: 15rem;
 }
+
+.tab_box .tab_panel {
+  display: none;
+}
+
+.tab_box .tab_panel.active {
+  display: block;
+}

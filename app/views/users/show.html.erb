@@ -1,8 +1,120 @@
-<div class="w-screen flex justify-center" > 
-
-<p>名前 : <%= @user.name %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
-<p><%= @spot.name %></p>
-<p><%= @spot.comment %></p>
+<div class="block pb-4 mx-32 mt-5 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  <div class="mx-5">
+    <div class="grid grid-cols-2 gap-5 flex items-center content-center">
+      <div class="mt-3 mx-auto w-36 md:rounded">
+        <% if @user.image.present? %>
+          <%= image_tag @user.image.url,:class=> '', :size => '500x500' %>
+        <% else %>
+          <%= image_tag 'user.svg', :size => '500x500' %>
+        <% end %>
+      </div>
+      <div class="text-3xl font-semibold text-slate-600">
+        <div>
+          <%= @user.name %>
+        </div>
+        <div class="grid grid-cols-2 pt-5">
+          <div class="flex flex-col">
+            <span class="text-xl text-slate-600">followers</span>
+            <%= @user.followers.count %>
+          </div>
+          <div class="flex flex-col">
+          <span class="text-xl text-slate-600">followings</span>
+            <%= @user.following.count %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab_box border-gray-200 dark:border-gray-700">
+      <ul class="btn_area flex flex-wrap justify-center mx-auto my-5 border-b text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+        <div class="tab_btn border-b-2 border-blue-600 active">
+          <div class="inline-flex p-4 rounded-t-lg  text-blue-600 dark:text-blue-500 dark:border-blue-500">
+            <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>投稿した記事
+          </div>
+        </div>
+        <div class="tab_btn">
+          <div class="inline-flex p-4 rounded-t-lg text-blue-600 dark:text-blue-500 dark:border-blue-500" aria-current="page">
+            <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>お気に入り
+          </div>
+        </div>
+      </ul>
+      <div class="panel_area">
+        <div class="tab_panel active">
+          <% @spots.each do |spot| %>
+            <%= link_to spot_path(spot) do %>
+              <div class="grid grid-cols-7 mt-3 p-2 hover:bg-slate-100">
+                <div class="col-span-2">
+                  <% if spot.images[0].present? %>
+                    <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-48 w-80 mx-auto", size: "30x30"%>
+                  <% else %>
+                    <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-48 w-80 mx-auto"%>
+                  <% end %>
+                </div>
+                <div class="col-span-5 ml-5 relative mt-3 flex flex-col">
+                  <p class="text-3xl font-semibold text-slate-600"><%= spot.name %></p>
+                  <p class="text-xl font-semibold text-slate-600"><%= spot.comment %></p>
+                  <div class="flex mt-5">
+                    <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 25px; height: 25px; opacity: 1;" xml:space="preserve">
+                      <style type="text/css">
+                        .st0{fill:#4B4B4B;}
+                      </style>
+                      <g>
+                        <path class="st0" d="M380.63,32.196C302.639,33.698,264.47,88.893,256,139.075c-8.47-50.182-46.638-105.378-124.63-106.879
+                          C59.462,30.814,0,86.128,0,187.076c0,129.588,146.582,189.45,246.817,286.25c3.489,3.371,2.668,3.284,2.668,3.284
+                          c1.647,2.031,4.014,3.208,6.504,3.208v0.011c0,0,0.006,0,0.011,0c0,0,0.006,0,0.011,0v-0.011c2.489,0,4.856-1.177,6.503-3.208
+                          c0,0-0.821,0.086,2.669-3.284C365.418,376.526,512,316.664,512,187.076C512,86.128,452.538,30.814,380.63,32.196z" style="fill: rgb(223, 86, 86);"></path>
+                      </g>
+                    </svg>
+                    <p class="ml-2">: <%= spot.likes.count %></p>
+                  </div>
+                  <p class="absolute text-xl text-end bottom-0 right-0 text-slate-600">作成日&nbsp;<%= spot.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab_panel">
+          <% @user.liked_spots.each do |spot| %>
+            <%= link_to spot_path(spot) do %>
+              <div class="grid grid-cols-7 mt-3 p-2 hover:bg-slate-100">
+                <div class="col-span-2">
+                  <% if spot.images[0].present? %>
+                    <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-48 w-80 mx-auto", size: "30x30"%>
+                  <% else %>
+                    <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-48 w-80 mx-auto"%>
+                  <% end %>
+                </div>
+                <div class="col-span-5 ml-5 relative mt-3 flex flex-col">
+                  <p class="text-3xl font-semibold text-slate-600"><%= spot.name %></p>
+                  <p class="text-xl font-semibold text-slate-600"><%= spot.comment %></p>
+                  <div class="flex mt-5">
+                    <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 25px; height: 25px; opacity: 1;" xml:space="preserve">
+                      <style type="text/css">
+                        .st0{fill:#4B4B4B;}
+                      </style>
+                      <g>
+                        <path class="st0" d="M380.63,32.196C302.639,33.698,264.47,88.893,256,139.075c-8.47-50.182-46.638-105.378-124.63-106.879
+                          C59.462,30.814,0,86.128,0,187.076c0,129.588,146.582,189.45,246.817,286.25c3.489,3.371,2.668,3.284,2.668,3.284
+                          c1.647,2.031,4.014,3.208,6.504,3.208v0.011c0,0,0.006,0,0.011,0c0,0,0.006,0,0.011,0v-0.011c2.489,0,4.856-1.177,6.503-3.208
+                          c0,0-0.821,0.086,2.669-3.284C365.418,376.526,512,316.664,512,187.076C512,86.128,452.538,30.814,380.63,32.196z" style="fill: rgb(223, 86, 86);"></path>
+                      </g>
+                    </svg>
+                    <p class="ml-2">: <%= spot.likes.count %></p>
+                  </div>
+                  <p class="absolute text-xl text-end bottom-0 right-0 text-slate-600">作成日&nbsp;<%= spot.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+$('.tab_box .tab_btn').click(function() {
+	var index = $('.tab_box .tab_btn').index(this);
+	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active border-b-2 border-blue-600');
+	$(this).addClass('active border-b-2 border-blue-600');
+	$('.tab_box .tab_panel').eq(index).addClass('active');
+});
+</script>
