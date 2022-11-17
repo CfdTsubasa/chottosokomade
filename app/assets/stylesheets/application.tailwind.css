@@ -9,7 +9,6 @@
 *=require_tree .
 */
 
-
 .balloon_l,
 .balloon_r {
   margin: 55px 0;
@@ -94,4 +93,9 @@
 
 .tab_box .tab_panel.active {
   display: block;
+}
+
+#map {
+  height: 90%;
+  width: 100%
 }
