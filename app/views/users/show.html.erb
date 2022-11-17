@@ -8,7 +8,7 @@
           <%= image_tag 'user.svg', :size => '500x500' %>
         <% end %>
       </div>
-      <div class="text-3xl font-semibold text-slate-600">
+      <div class="text-3xl font-semibold text-slate-600 mt-8">
         <div>
           <%= @user.name %>
         </div>
@@ -21,6 +21,22 @@
           <span class="text-xl text-slate-600">followings</span>
             <%= @user.following.count %>
           </div>
+        </div>
+        <div class="mt-5 w-60">
+          <div id="btn" class="btn btn-outline-primary">
+            現在位置を取得する
+          </div>
+          <div id="btn2" class="flex flex-col hidden">
+            <span class="text-xl font-medium">取得に成功しました！</span>
+            <div class="btn btn-outline-primary">
+              <%= form_with(model:@current_location, local: true) do |f| %>
+                <%= f.hidden_field :latitude %>
+                <%= f.hidden_field :longitude %>
+                <%= f.submit "現在位置情報を保存する" %>
+              <% end %>
+            </div>
+          </div>
+          <%= @current_location2.name %>
         </div>
       </div>
     </div>
@@ -110,11 +126,31 @@
     </div>
   </div>
 </div>
+
 <script>
-$('.tab_box .tab_btn').click(function() {
-	var index = $('.tab_box .tab_btn').index(this);
-	$('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active border-b-2 border-blue-600');
-	$(this).addClass('active border-b-2 border-blue-600');
-	$('.tab_box .tab_panel').eq(index).addClass('active');
-});
+  $("#btn").click(function(){
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  });
+
+  function successCallback(position){
+    let latitude = position.coords.latitude;
+    $("#current_location_latitude").val(latitude);
+
+    let longitude = position.coords.longitude;
+    $("#current_location_longitude").val(longitude);
+
+    $("#btn").addClass("hidden");
+    $("#btn2").removeClass("hidden");
+  };
+
+  function errorCallback(error){
+      alert("位置情報が取得できませんでした");
+  };
+  
+  $('.tab_box .tab_btn').click(function() {
+    var index = $('.tab_box .tab_btn').index(this);
+    $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active border-b-2 border-blue-600');
+    $(this).addClass('active border-b-2 border-blue-600');
+    $('.tab_box .tab_panel').eq(index).addClass('active');
+  });
 </script>

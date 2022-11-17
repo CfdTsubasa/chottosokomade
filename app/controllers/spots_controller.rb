@@ -24,6 +24,7 @@ class SpotsController < ApplicationController
     @review = Review.new
     @like = Like.new
     @user = User.find(current_user.id)
+    @current_location = CurrentLocation.where(user_id: current_user.id).last
   end
 
   def edit

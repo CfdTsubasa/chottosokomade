@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_many :spots
+  has_many :spots, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :liked_spots, through: :likes, source: :spot
+  has_one :current_location, dependent: :destroy
+  has_many :liked_spots, through: :likes, source: :spot, dependent: :destroy
 
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -9,8 +10,8 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name:  "Relationship",
                                   foreign_key: "followed_id",
                                   dependent:   :destroy
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following, through: :active_relationships, source: :followed, dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower, dependent: :destroy
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
