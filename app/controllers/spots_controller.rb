@@ -23,6 +23,7 @@ class SpotsController < ApplicationController
     @reviews = Review.where(spot_id: params[:id])
     @review = Review.new
     @like = Like.new
+    @user = User.find(current_user.id)
   end
 
   def edit
