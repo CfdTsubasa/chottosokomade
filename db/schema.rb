@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_131451) do
+ActiveRecord::Schema.define(version: 2022_11_05_144726) do
+
+  create_table "current_locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_current_locations_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer "spot_id", null: false
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_131451) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "current_locations", "users"
   add_foreign_key "likes", "spots"
   add_foreign_key "likes", "users"
   add_foreign_key "reviews", "spots"

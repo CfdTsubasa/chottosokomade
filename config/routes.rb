@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'searches/search'
+  post 'current_locations/create'
+  post 'relationships/create_search'
+  post 'relationships/destroy_search'
   # get 'reviews/create'
   # get 'reviews/delete'
   # get 'reviews/new'
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
   resources :reviews 
+  resources :current_locations
 resources :relationships,       only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :user do

@@ -16,12 +16,12 @@
         <% else %>
           <%= image_tag "/assets/default.png"%>
         <% end %>
-        <div class="absolute top-0 z-10 left-0 w-full h-full flex items-center justify-center" style="background-color: rgba(0,0,0,.5);"  x-show="open">
+        <div class="absolute top-0 z-50 left-0 w-full h-full flex items-center justify-center" style="background-color: rgba(0,0,0,.5);"  x-show="open">
           <div class="text-left bg-white h-auto p-4 md:max-w-xl md:p-6 lg:p-8 shadow-xl rounded mx-2 md:mx-0" @click.away="open = false">
             <h2 class="ml-4 text-3xl font-semibold"><%= @spot.name %></h2>
             <ul class="slider-modal">
               <% @spot.images.each do |image,index| %>
-                <li style="" @click="open = true"><%= image_tag image.url, class: "m-5 object-contain h-96"%></li>
+                <li style="" @click="open = true"><%= image_tag image.url, class: "m-5 object-cover", style: "height: 23rem;" %></li>
               <% end %>
             </ul>
             <div class="flex justify-center mt-8">
@@ -37,27 +37,14 @@
         <h5 class="mt-2 mb-2 ml-2 text-5xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @spot.name %></h5>
       </div>
       <p class="font-normal text-gray-700 dark:text-gray-400">コメント(Comment):<%= @spot.comment %></p>
-      <h3>緯度：<%= @spot.latitude %><br>経度：<%= @spot.longitude %><br>場所：<%= @spot.address %></h3>
+      場所：<%= @spot.address %></h3>
       <div id="like">
         <%= render 'like', likes: @like, spots: @spot %>
       </div>
       <% if @spot.latitude.present? %>
-        <div class="h-1/2">
-          <script src="http://maps.google.com/maps/api/js?key=AIzaSyCr5QofQ0Nu28hWjAnXzOaLp1zG38-LYKY&language=ja"></script>
-          <style>
-            #map { height: 80%; width: 100%}
-          </style>
-          <div id="map" class="my-2 z-1"></div>
-          <script>
-            var MyLatLng = new google.maps.LatLng(<%= @spot.latitude %>, <%= @spot.longitude %>);
-            var Options = {
-              zoom: 14,      //地図の縮尺値
-              center: MyLatLng,    //地図の中心座標
-              mapTypeId: 'roadmap',  //地図の種類
-              zIndex: 5 ,
-            };
-            var map = new google.maps.Map(document.getElementById('map'), Options);
-          </script>
+        <div class="h-1/2 border rounded-md p-1 flex flex-col items-center">
+          <span id="route_time"></span>
+          <div id="map" class="w-96 h-48"></div>
         </div>
       <% end %>
       <div id="author" class="border border-gray-200 p-5 rounded-2xl flex items-center justify-center">
@@ -69,7 +56,7 @@
           <% end%>
         </div>
         <%= link_to user_show_path(@spot.user_id) do %>
-          <p class="font-semibold">投稿者(Author):<%= @spot.user.name %></p>
+          <p class="font-semibold"><%= @spot.user.name %></p>
         <% end %>
         <div id="follow">
           <%= render 'follow', spots: @spot, users: @user %>
@@ -128,4 +115,68 @@
     });
   });
 </script>
+<% if @spot.latitude.present? %>
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyB5WheeynG_YrHkJdB8QpjICenCFOLDEpQ&language=ja&callback=initRouteMap" async defer ></script>
+  <script>
+    var directionsService;
+    var directionsRenderer;
+    var distanceMatrixservice;
+    var map;
 
+    function initRouteMap(){
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      distanceMatrixservice = new google.maps.DistanceMatrixService();
+
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: { lat: <%= @current_location.latitude %>, lng: <%= @current_location.longitude %> }, // 地図表示の中心座標
+      });
+
+      directionsRenderer.setMap(map);
+      directionsRenderer.setOptions({
+        preserveViewport: true,
+      });
+
+      setLocation(<%= @current_location.latitude %>, <%= @current_location.longitude %>);
+    }
+
+    function setLocation(lat, lng){
+      distanceMatrixservice.getDistanceMatrix({
+        origins: [lat +"," + lng],
+        destinations: [<%= @spot.latitude %> + "," + <%= @spot.longitude %>],
+        travelMode: google.maps.TravelMode.WALKING,
+      }, timeRequired)
+      directionsService
+      .route({
+        origin: lat +"," + lng,
+        destination: <%= @spot.latitude %> + "," + <%= @spot.longitude %>,
+        travelMode: google.maps.TravelMode.WALKING,
+      })
+      .then((response) => {
+        directionsRenderer.setDirections(response);
+        map.panTo(new google.maps.LatLng(lat,lng));
+      })
+      .catch((e) => console.log(status));
+    }
+
+    function timeRequired(response, status) {
+      if(status == "OK") {
+        var origins = response.originAddresses;
+        var destinations = response.destinationAddresses;
+        for (var i = 0; i < origins.length; i++) {
+          var results = response.rows[i].elements;
+          for (var j = 0; j < results.length; j++) {
+            var element = results[j];
+            var distance = element.distance.text;
+            var duration = element.duration.text;
+            var from = origins[i];
+            var to = destinations[j];
+          }
+        }
+        var routeTime = document.getElementById("route_time");
+        routeTime.innerHTML = "<p>およそ" + "<span class='mx-1 text-slate-500 text-2xl font-semibold'>" +  duration + "</span>" + "で到着します</p>"
+      }
+    }
+  </script>
+<% end %>

@@ -1,0 +1,111 @@
+<div class="text-center">
+  <h1 class="text-3xl font-semibold underline underline-offset-8 decoration-1">探索</h1>
+</div>
+<div id="search" class="mt-4 py-4 mx-24 border rounded-full p-3">
+  <span class="text-left px-8">フリーワード探索</span>
+  <%= form_with url: searches_search_path,class: 'flex px-8 gap-5 text-center', local: true, method: :get do |f| %>
+    <%= f.text_field :q  , class: 'form-control border col-span-5 px-8 h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    <%= f.submit ("探索") , class: 'border bg-slate-200 p-1'%>
+  <% end %>
+</div>
+<div class="tab_box border-gray-200 dark:border-gray-700 mb-8">
+  <ul class="btn_area flex flex-wrap justify-center mx-auto my-5 border-b text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+    <div class="tab_btn border-b-2 border-blue-600 active">
+      <div class="inline-flex p-4 rounded-t-lg  text-blue-600 dark:text-blue-500 dark:border-blue-500">
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>スポット
+      </div>
+    </div>
+    <div class="tab_btn">
+      <div class="inline-flex p-4 rounded-t-lg text-blue-600 dark:text-blue-500 dark:border-blue-500" aria-current="page">
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>ユーザー
+      </div>
+    </div>
+  </ul>
+  <div class="panel_area">
+    <div class="tab_panel active">
+      <div id="spots">
+        <% if current_user and @spots.present? %>
+          <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
+            <% @spots.each do |spot| %>
+              <div class="p-3">
+                <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"} do%>
+                  <% if spot.images[0].present? %>
+                    <%= image_tag spot.images[0].url, class: "object-cover h-48 w-80 mx-auto"%>
+                  <% else %>
+                    <%= image_tag "/assets/default.png", class: "object-cover h-48 w-80 mx-auto"%>
+                  <% end %>
+                  <div>
+                    <h5 class="mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= spot.name %></h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= spot.comment %></p>
+                    投稿者(Author):<%= spot.user.name %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="mt-5 text-center">
+            <p>探索結果がありません。</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto my-0">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+            </svg>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab_panel">
+      <div id="users">
+        <% if current_user and @users.present? %>
+          <% @users.each do |user| %>      
+            <%= link_to user_show_path(user) , {class: "block p-1 mx-24 mt-4 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"} do%>
+              <div class="grid grid-cols-7 p-3">
+                <div class="col-span-2">
+                  <% if user.image.present? %>
+                    <%= image_tag user.image.url, class: "object-contain h-48 w-80"%>
+                  <% else %>
+                    <%= image_tag "/assets/default.png", class: "object-contain h-48 w-80"%>
+                  <% end %>
+                </div>
+                <div class="col-span-3">
+                  <div>
+                    <h5 class="mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= user.name %></h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= user.profile %></p>
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <div class="flex flex-col">
+                    <% if user.spots.present? %>
+                      <p class="text-center">最新の投稿</p>
+                      <hr>
+                      <% if user.spots.last.images.present? %>
+                        <p class="font-semibold my-2 text-gray-700 text-center dark:text-gray-400"><%= user.spots.last.name %></p>
+                        <div class="flex justify-center">
+                          <%= image_tag user.spots.last.images[0].url, class: "object-contain h-32 w-80"%>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="mt-5 text-center">
+            <p>探索結果がありません。</p>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto my-0">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+            </svg>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('.tab_box .tab_btn').click(function() {
+    var index = $('.tab_box .tab_btn').index(this);
+    $('.tab_box .tab_btn, .tab_box .tab_panel').removeClass('active border-b-2 border-blue-600');
+    $(this).addClass('active border-b-2 border-blue-600');
+    $('.tab_box .tab_panel').eq(index).addClass('active');
+  });
+</script>
