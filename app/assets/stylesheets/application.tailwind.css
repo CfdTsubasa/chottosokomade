@@ -9,6 +9,30 @@
 *=require_tree .
 */
 
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.icon-circle-index {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.icon-circle-header {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
 .balloon_l,
 .balloon_r {
   margin: 55px 0;

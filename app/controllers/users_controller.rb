@@ -4,6 +4,6 @@ class UsersController < ApplicationController
     @spots = @user.spots
     @like = Like.new
     @current_location = CurrentLocation.new
-    @current_location2 = Spot.within_box(5, 35.6586148, 140.0612764).last
+    @current_location2 = Spot.within_box(5, 35.645856, 140.036135).last
   end
 end

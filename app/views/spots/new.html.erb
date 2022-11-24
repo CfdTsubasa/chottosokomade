@@ -16,6 +16,10 @@
         <%= f.label :address, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900 dark:text-gray-300'} %>
         <%= f.text_field :address, class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
       </div>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :tag_list, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900 dark:text-gray-300'} %>
+        <%= f.text_field :tag_list, value: @spot.tag_list.join(','), class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
       <p class="block mb-3 text-sm font-medium text-gray-900 dark:text-gray-300">Images</p>
       <%= f.label :images,  {for: 'file', class: 'col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'} do %>
         <div id="uploadArea" class="flex justify-center items-center w-full">
