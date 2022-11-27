@@ -5,11 +5,11 @@
       <% @reviews.each do |review| %>
         <div class="grid grid-cols-8 gap-5 mt-3 mb-3 flex items-center justify-center balloon_l">
           <div class="col-span-2 items-center justify-between text-center">
-            <div class="mt-3 mr-5 faceicon">
+            <div class="mt-3 mr-5">
               <% if review.user.image.present? %>
-                <%= image_tag review.user.image.url,:class=> '', :size => '50x50' %>
+                <%= image_tag review.user.image.url,:class=> 'icon-circle', :size => '50x50' %>
               <% else %>
-                <%= image_tag 'person.png', :size => '50x50' %>
+                <%= image_tag 'person.png',:class=> 'icon-circle', :size => '50x50' %>
               <% end%>
             </div>
           </div>

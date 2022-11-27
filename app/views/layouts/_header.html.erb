@@ -9,9 +9,13 @@
         <li class="ml-3 font-semibold"><%= link_to "投稿する", new_spot_path %></li>｜
         <li class="ml-3 font-semibold"><%= link_to "探索する", searches_search_path %></li>｜
         <li class="ml-3 font-semibold"><%= link_to "ログアウト", destroy_user_session_path %></li>｜
-        <li class="ml-3 font-semibold">
+        <li class="ml-3 font-semibold icon-circle-header">
           <%= link_to user_show_path(id: current_user.id) do %>
-            <%= image_tag 'person.png', :size => '50x50' %>
+            <% if current_user.image.present? %>
+              <%= image_tag current_user.image.url,:class=> 'icon-circle-header mr-4' %>
+            <% else %>
+              <%= image_tag 'person.png',:class=> 'icon-circle-header mr-4' %>
+            <% end %>
           <% end %>
         </li>
       <% else %>

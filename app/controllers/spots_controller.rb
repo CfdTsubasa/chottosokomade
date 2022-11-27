@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   def index
     # @spots = Spot.order("RANDOM()").all
-    @spots = Spot.all
+    @spots = Spot.all.order(id: "DESC")
     
   end
 
@@ -20,6 +20,7 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @tags = @spot.tag_counts_on(:tags)
     @reviews = Review.where(spot_id: params[:id])
     @review = Review.new
     @like = Like.new
@@ -46,6 +47,6 @@ class SpotsController < ApplicationController
   private 
 
   def spot_params
-    params.require(:spot).permit(:name, :comment, :address, :latitude, :longitude, { images: [] }).merge(user_id:current_user.id)
+    params.require(:spot).permit(:name, :comment, :address, :latitude, :longitude, :tag_list, { images: [] }).merge(user_id:current_user.id)
   end
 end
