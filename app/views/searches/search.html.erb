@@ -35,12 +35,33 @@
     </div>
   </div>
   <hr class="text-center mx-auto my-5 w-11/12">
-  <div id="neighborhood" class="flex">
-    <span class="text-left pl-8 mr-1 mb-3">周辺探索</span>
-    <svg  class="ml-1 mr-5 w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-    </svg>
+  <div id="neighborhood" class="mb-5 mt-2 mx-0 ml-8">
+    <div class="flex">
+      <span class="text-left mb-3">周辺探索（約3km圏内のスポット）</span>
+      <svg  class="mr-5 w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      </svg>
+    </div>
+    <div class="flex">
+      <% @neighborhood_spots.each do |spot| %>
+        <%= link_to spot_path(spot) do %>
+          <div class="mt-4 py-4 mr-4 border-2 border-blue-300 shadow-md rounded-md p-3 hover:bg-gray-100">
+            <div class="flex items-center gap-3">
+              <% if spot.images[0].present? %>
+                <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-12 w-12 mx-auto", size: "30x30"%>
+              <% else %>
+                <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-12 w-12 mx-auto"%>
+              <% end %>
+              <div class="flex flex-col">
+                <span class="text-md text-slate-500 font-semibold"><%= spot.name %></span>
+                <span class="text-sm text-slate-400"><%= spot.address %></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div id="search_condition" class="mt-8 text-center"></div>
@@ -53,12 +74,16 @@
   <ul class="btn_area flex flex-wrap justify-center mx-auto my-5 border-b text-sm font-medium text-center text-gray-500 dark:text-gray-400">
     <div id="spot_tab" class="tab_btn border-b-2 border-blue-600 active">
       <div class="inline-flex p-4 rounded-t-lg  text-blue-600 dark:text-blue-500 dark:border-blue-500">
-        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>スポット
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        スポット
       </div>
     </div>
     <div id="user_tab" class="tab_btn">
       <div class="inline-flex p-4 rounded-t-lg text-blue-600 dark:text-blue-500 dark:border-blue-500" aria-current="page">
-        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>ユーザー
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>ユーザー
       </div>
     </div>
   </ul>
