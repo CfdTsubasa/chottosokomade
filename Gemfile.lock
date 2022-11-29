@@ -299,6 +299,7 @@ DEPENDENCIES
   rails-erd
   ransack
   sass-rails (>= 6)
+  sassc-rails
   selenium-webdriver
   spring
   sqlite3
