@@ -28,7 +28,6 @@ gem 'carrierwave'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'jquery-rails'
-gem 'sassc-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'acts-as-taggable-on'
