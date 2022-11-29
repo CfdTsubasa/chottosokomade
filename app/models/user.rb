@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :spots, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_one :current_location, dependent: :destroy
+  has_many :current_location, dependent: :destroy
   has_many :liked_spots, through: :likes, source: :spot, dependent: :destroy
 
   has_many :active_relationships, class_name:  "Relationship",
