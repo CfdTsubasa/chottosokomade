@@ -33,6 +33,7 @@ gem 'acts-as-taggable-on'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'ransack'
+gem 'mysql2'
 gem 'sqlite3'
 
 group :development, :test do
