@@ -3,7 +3,7 @@ require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
 CarrierWave.configure do |config|
-  if Rails.env.development? # 本番環境の場合はS3へアップロード
+  if Rails.env.production? # 本番環境の場合はS3へアップロード
     config.fog_provider = 'fog/aws'
     config.fog_directory  = 'tsubasaportfolio' # バケット名
     config.fog_public = false
