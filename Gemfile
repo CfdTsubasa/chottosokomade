@@ -34,7 +34,7 @@ gem 'acts-as-taggable-on'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'ransack'
 gem 'sqlite3'
-gem 'mysql2', '~> 0.4.4'
+gem 'mysql2'
 gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
