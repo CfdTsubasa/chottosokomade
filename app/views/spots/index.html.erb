@@ -9,7 +9,7 @@
           <% if spot.images[0].present? %>
             <%= image_tag spot.images[0].url, class: "object-cover h-48 w-80 mx-auto"%>
           <% else %>
-            <%= image_tag "/assets/default.png", class: "object-cover h-48 w-80 mx-auto"%>
+            <%= image_tag "default.png", class: "object-cover h-48 w-80 mx-auto"%>
           <% end %>
           <div>
             <h5 class="mt-2 mb-2 py-1 pl-1 text-2xl font-bold tracking-tight bg-blue-200 dark:text-white"><%= spot.name %></h5>
