@@ -5,7 +5,7 @@ class Spot < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   
   validates :user_id, presence: true
-  mount_uploaders :images, ImageUploader
+  mount_uploaders :images, ImagesUploader
   after_validation :geocode
   geocoded_by :address
   def display_image
