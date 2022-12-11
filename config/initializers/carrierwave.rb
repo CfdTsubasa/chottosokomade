@@ -15,7 +15,7 @@ CarrierWave.configure do |config|
       path_style: true
     }
     config.fog_directory  = 'tsubasaportfolio'
-    config.asset_host = 'https://tsubasaportfolio.s3.amazonaws.com'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/tsubasaportfolio'
   else # 本番環境以外の場合はアプリケーション内にアップロード
     config.storage :file
     config.enable_processing = false if Rails.env.test?
