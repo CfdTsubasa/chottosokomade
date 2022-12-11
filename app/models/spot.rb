@@ -6,6 +6,7 @@ class Spot < ApplicationRecord
   
   validates :user_id, presence: true
   mount_uploaders :images, ImagesUploader
+  serialize :images, JSON
   after_validation :geocode
   geocoded_by :address
   def display_image
