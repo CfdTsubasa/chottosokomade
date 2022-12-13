@@ -34,7 +34,6 @@ gem 'acts-as-taggable-on'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'ransack'
 gem 'sqlite3'
-gem 'mysql2'
 gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +62,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'mysql2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
