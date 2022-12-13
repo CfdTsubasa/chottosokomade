@@ -5,7 +5,7 @@
   <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
     <% @spots.each do |spot| %>
       <div class="p-3">
-        <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"} do%>
+        <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"} do%>
           <% if spot.images[0].present? %>
             <%= image_tag spot.images[0].url, class: "object-cover h-48 w-80 mx-auto"%>
           <% else %>

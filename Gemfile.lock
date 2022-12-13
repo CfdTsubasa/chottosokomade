@@ -177,6 +177,7 @@ GEM
     minitest (5.16.3)
     msgpack (1.5.6)
     multi_json (1.15.0)
+    mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -327,6 +328,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)
+  mysql2
   net-imap
   net-pop
   net-smtp
