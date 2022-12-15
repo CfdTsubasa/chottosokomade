@@ -6,7 +6,7 @@
         <% if @user.image.present? %>
           <%= image_tag @user.image.url,:class=> 'icon-circle-mypage', :size => '500x500' %>
         <% else %>
-          <%= image_tag 'user.svg', :size => '500x500' %>
+          <%= image_tag 'user.svg', :size => '300x300' %>
         <% end %>
       </div>
       <div class="text-slate-600 mt-8">
