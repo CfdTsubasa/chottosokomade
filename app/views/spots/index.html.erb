@@ -3,6 +3,7 @@
   <div class="border-double border-l-4 border-blue-500"></div>
   <h1 class="mx-2 text-3xl font-semibold">最新投稿一覧</h1>
 </div>
+<%= paginate @spots %>
 <% if current_user and @spots.present? %>
   <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
     <% @spots.each do |spot| %>
@@ -56,3 +57,4 @@
     <% end %>
   </div>
 <% end %>
+<%= paginate @spots %>

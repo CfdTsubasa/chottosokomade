@@ -1,8 +1,6 @@
 class SpotsController < ApplicationController
   def index
-    # @spots = Spot.order("RANDOM()").all
-    @spots = Spot.all.order(id: "DESC")
-    
+    @spots = Spot.all.order(id: "DESC").page(params[:page]).per(21)
   end
 
   def new

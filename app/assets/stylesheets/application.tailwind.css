@@ -131,3 +131,25 @@
   height: 90%;
   width: 100%
 }
+
+.pagination{
+  text-align: center;
+  color: rgb(116, 166, 224);
+}
+
+.page{
+  text-align: center;
+  margin: 0 2px;
+  padding: 2px;
+  font-size: 23px;
+}
+
+.page.current{
+  color: rgb(7, 117, 243);
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  margin: 0 2px;
+  padding: 2px;
+  font-size: 28px;
+}
