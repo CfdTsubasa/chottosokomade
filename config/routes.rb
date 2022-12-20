@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   post 'current_locations/create'
   post 'relationships/create_search'
   post 'relationships/destroy_search'
-  # get 'reviews/create'
-  # get 'reviews/delete'
-  # get 'reviews/new'
   root 'spots#index'
   get 'spots/create'
+  get 'spots/following_users_spots'
   get '/users/show/:id', to:'users#show',as:'user_show'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
@@ -19,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :reviews 
   resources :current_locations
-resources :relationships,       only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

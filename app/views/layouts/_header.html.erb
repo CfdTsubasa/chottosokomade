@@ -16,6 +16,7 @@
     <ul id="headerMenu" class="flex items-center ml-3 text-white font-semibold">
       <% if current_user.present? %>
         <li><%= link_to "ホーム", root_path %></li>｜
+        <li><%= link_to "フォロー中のユーザー投稿", spots_following_users_spots_path %></li>｜
         <li><%= link_to "投稿する", new_spot_path %></li>｜
         <li><%= link_to "探索する", searches_search_path %></li>｜
         <li><%= link_to "ログアウト", destroy_user_session_path %></li>｜

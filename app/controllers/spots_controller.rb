@@ -44,6 +44,10 @@ class SpotsController < ApplicationController
     redirect_to spots_url
   end
 
+  def following_users_spots
+    @spots = current_user.following_users_spots
+  end
+
   private 
 
   def spot_params

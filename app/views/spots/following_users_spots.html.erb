@@ -1,0 +1,57 @@
+<% provide(:title, "フォロー中のユーザー投稿") %>
+<div class="text-center">
+  <h1 class="text-3xl font-semibold text-blue-400 underline underline-offset-8 decoration-1">フォロー中のユーザー投稿</h1>
+</div>
+<% if current_user and @spots.present? %>
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
+    <% @spots.each do |spot| %>
+      <div class="p-3">
+        <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"} do%>
+          <% if spot.images[0].present? %>
+            <%= image_tag spot.images[0].url, class: "object-cover h-48 w-80 mx-auto"%>
+          <% else %>
+            <%= image_tag "default.png", class: "object-cover h-48 w-80 mx-auto"%>
+          <% end %>
+          <div>
+            <h5 class="mt-2 mb-2 py-1 pl-1 text-2xl font-bold tracking-tight bg-blue-200 dark:text-white"><%= spot.name %></h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><%= spot.comment %></p>
+            <div id="tags" class="my-2 flex flex-wrap gap-y-2 gap-x-1">
+              <% spot.tag_counts_on(:tags).each do |tag| %>
+                <div class="text-xs inline-flex items-center leading-sm px-3 py-1 bg-blue-200 text-blue-700 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-blue-700">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
+                  </svg>
+                  <span class="text-base"><%= tag.name %><span>
+                </div>
+              <% end %>
+            </div>
+            <div class="flex justify-between mt-1 items-center">
+              <div class="flex items-center">
+                <% if spot.user.image.present? %>
+                  <%= image_tag spot.user.image.url,:class=> 'icon-circle-index mr-4' %>
+                <% else %>
+                  <%= image_tag 'person.png',:class=> 'icon-circle-index mr-4' %>
+                <% end%>
+                <p class="text-slate-500"><%= spot.user.name %></p>
+              </div>
+              <div class="flex">
+                <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 25px; height: 25px; opacity: 1;" xml:space="preserve">
+                  <style type="text/css">
+                    .st0{fill:#4B4B4B;}
+                  </style>
+                  <g>
+                    <path class="st0" d="M380.63,32.196C302.639,33.698,264.47,88.893,256,139.075c-8.47-50.182-46.638-105.378-124.63-106.879
+                      C59.462,30.814,0,86.128,0,187.076c0,129.588,146.582,189.45,246.817,286.25c3.489,3.371,2.668,3.284,2.668,3.284
+                      c1.647,2.031,4.014,3.208,6.504,3.208v0.011c0,0,0.006,0,0.011,0c0,0,0.006,0,0.011,0v-0.011c2.489,0,4.856-1.177,6.503-3.208
+                      c0,0-0.821,0.086,2.669-3.284C365.418,376.526,512,316.664,512,187.076C512,86.128,452.538,30.814,380.63,32.196z" style="fill: rgb(223, 86, 86);"></path>
+                  </g>
+                </svg>
+                <p class="ml-2"> <%= spot.likes.count %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
