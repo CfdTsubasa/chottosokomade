@@ -43,7 +43,7 @@ class SpotsController < ApplicationController
   end
 
   def following_users_spots
-    @spots = current_user.following_users_spots
+    @spots = current_user.following_users_spots.order(id: "DESC").page(params[:page]).per(21)
   end
 
   private 
