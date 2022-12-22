@@ -51,12 +51,12 @@
   </li>
   <li class="small-screen">
     <%= link_to user_show_path(id: current_user.id) do %>
-      <div class="flex justify-center">
+      <div class="flex justify-center items-center">
         <span>マイページ</span>
         <% if current_user.image.present? %>
-          <%= image_tag current_user.image.url,:class=> 'icon-circle-navbar ml-4' %>
+          <%= image_tag current_user.image.url,:class=> 'icon-circle-navbar ml-3' %>
         <% else %>
-          <%= image_tag 'person.png',:class=> 'icon-circle-navbar ml-4' %>
+          <%= image_tag 'person.png',:class=> 'icon-circle-navbar ml-3' %>
         <% end %>
       </div>
     <% end %>
