@@ -21,5 +21,13 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
     <%= yield %>
+    <% if Rails.env.development? %>
+      <div class="responsive_size text-3xl font-semibold text-gray-500">
+        <span class="responsive_size_sm hidden">SM</span>
+        <span class="responsive_size_md hidden">MD</span>
+        <span class="responsive_size_lg hidden">LG</span>
+        <span class="responsive_size_xl hidden">XL</span>
+      </div>
+    <% end %>
   </body>
 </html>

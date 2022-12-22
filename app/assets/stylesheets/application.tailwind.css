@@ -22,6 +22,29 @@
   }
 }
 
+.responsive_size {
+  position: fixed;
+  bottom: 20px;
+  z-index: 20;
+  right: 100px;
+}
+@media (max-width: 640px) {
+  .responsive_size_sm{
+  display: block;
+  }
+}@media (min-width: 641px) and (max-width: 768px) {
+  .responsive_size_md {
+    display: block;
+  }
+}@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive_size_lg {
+    display: block;
+  }
+}@media (min-width: 1025px) and (max-width: 1280px) {
+  .responsive_size_xl {
+    display: block;
+  }
+}
 .icon-circle {
   width: 70px;
   height: 70px;
