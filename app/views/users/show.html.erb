@@ -2,7 +2,7 @@
 <% if current_user == @user %>
   <% showInfo = true %>
 <% end %>
-<div class="block pb-4 mx-32 mt-5 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<div class="block pb-4 mx-4 sm:mx-12 md:mx-12 lg:mx-32 xl:mx-32  mt-5 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
   <div class="mx-5">
     <div class="grid lg:grid-cols-2 gap-5 flex mt-5 items-center content-center">
       <div class="mt-3 mx-auto flex flex-col">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="text-slate-600">
-        <div class="flex gap-4 md:justify-center">
+        <div class="flex gap-4 md:justify-center justify-center">
           <div class="text-3xl font-semibold">
             <%= @user.name %>
           </div>
@@ -47,7 +47,7 @@
           <div class="xl:w-10/12 p-3 mt-2 bg-gray-100 rounded-md"><%= @user.profile %></div>
         <% end %>
         <% if showInfo %>
-          <div class="flex items-center justify-start gap-5 mt-3">
+          <div class="flex items-center xl:justify-start justify-center gap-5 mt-3">
             <div class="flex my-2 text-center">
               <% if @user.current_location.present? %>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1 text-green-500">
