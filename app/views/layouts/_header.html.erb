@@ -1,38 +1,21 @@
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap');
-
-  @media screen and (max-width: 805px){
-    #headerMenu{
-      display: none;
-    }
-  }
-</style>
 <header class="mb-3" id="headerheader">
   <nav class="flex justify-around bg-blue-400 p-4 rounded-md">
     <h1 class="flex items-center text-white">
-      <%= link_to "Chottosokomade!!", root_path , {class: "text-3xl font-semibold ",style: "font-family: 'Gravitas One', cursive;
-"}%>
+      <%= link_to "Chottosokomade!!", root_path , {class: "text-4xl font-semibold ",style: "font-family: 'Gravitas One', cursive; font-family: 'Montserrat', sans-serif;"}%>
     </h1>
-    <ul id="headerMenu" class="flex items-center ml-3 text-white font-semibold">
-      <% if current_user.present? %>
-        <li><%= link_to "ホーム", root_path %></li>｜
-        <li><%= link_to "フォロー中のユーザー投稿", spots_following_users_spots_path %></li>｜
-        <li><%= link_to "投稿する", new_spot_path %></li>｜
-        <li><%= link_to "探索する", searches_search_path %></li>｜
-        <li><%= link_to "ログアウト", destroy_user_session_path %></li>｜
-        <li class="icon-circle-header">
-          <%= link_to user_show_path(id: current_user.id) do %>
-            <% if current_user.image.present? %>
-              <%= image_tag current_user.image.url,:class=> 'icon-circle-header mr-4' %>
-            <% else %>
-              <%= image_tag 'person.png',:class=> 'icon-circle-header mr-4' %>
-            <% end %>
-          <% end %>
-        </li>
-      <% else %>
-        <li class="font-semibold"><%= link_to "ログイン", user_session_path %></li>
-      <% end %>
+    <ul id="header-menu" class="flex items-center ml-3 text-white font-semibold">
+      <%= render 'layouts/menues' %>
     </ul>
+    <div class="hamburger mr-6">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="globalMenuSp">
+    <ul>
+      <%= render 'layouts/menues' %>
+    </ul>
+</nav>
   </nav>
 </header>
 
