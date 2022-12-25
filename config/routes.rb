@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   post 'current_locations/create'
   post 'relationships/create_search'
   post 'relationships/destroy_search'
-  root 'spots#index'
   get 'spots/create'
   get 'spots/following_users_spots'
   get '/users/show/:id', to:'users#show',as:'user_show'
@@ -24,5 +23,6 @@ Rails.application.routes.draw do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy" 
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    root :to => 'devise/sessions#new'
   end
 end
