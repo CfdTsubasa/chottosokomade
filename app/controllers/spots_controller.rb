@@ -38,8 +38,9 @@ class SpotsController < ApplicationController
 
   def destroy
     spot = Spot.find(params[:id])
+    spotName = spot.name
     spot.destroy
-    redirect_to spots_url
+    redirect_to user_show_path(current_user), notice: "スポット「#{spotName}」を削除しました。"
   end
 
   def following_users_spots
