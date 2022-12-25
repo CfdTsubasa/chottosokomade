@@ -6,16 +6,18 @@
     <ul id="header-menu" class="flex items-center ml-3 text-white font-semibold">
       <%= render 'layouts/menues' %>
     </ul>
+    <% if current_user %>
     <div class="hamburger mr-6">
       <span></span>
       <span></span>
       <span></span>
     </div>
     <nav class="globalMenuSp">
-    <ul>
-      <%= render 'layouts/menues' %>
-    </ul>
-</nav>
+      <ul>
+        <%= render 'layouts/menues' %>
+      </ul>
+    </nav>
+    <% end %>
   </nav>
 </header>
 
