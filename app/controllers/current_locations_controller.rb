@@ -2,7 +2,7 @@ class CurrentLocationsController < ApplicationController
   def create
     current_location = CurrentLocation.new(current_location_params)
     if current_location.save!
-      redirect_to user_show_path(current_user),notice: '登録しました'
+      redirect_to user_show_path(current_user),notice: '投稿が完了しました'
     else
       redirect_to user_show_path
     end

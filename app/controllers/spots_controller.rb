@@ -10,7 +10,7 @@ class SpotsController < ApplicationController
   def create
     spot = Spot.new(spot_params)
     if spot.save!
-      redirect_to root_path,notice: '登録しました'
+      redirect_to root_path,notice: '投稿が完了しました'
     else
       redirect_to spots_path
     end
@@ -33,7 +33,7 @@ class SpotsController < ApplicationController
   def update
     spot = Spot.find(params[:id])
     spot.update!(spot_params)
-    redirect_to spots_url, notice: "タスク「#{spot.name}」を更新しました。"
+    redirect_to spots_url, notice: "スポット「#{spot.name}」を更新しました。"
   end
 
   def destroy
