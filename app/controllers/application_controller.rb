@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     user_show_path(id: current_user.id)
   end
 
+  def after_sign_out_path_for(resource)
+    sign_in_path
+  end
+
   protected
   def configure_permitted_parameters
     # サインアップ時にnameのストロングパラメータを追加
