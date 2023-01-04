@@ -46,22 +46,26 @@
       </svg>
     </div>
     <div class="flex">
-      <% @neighborhood_spots.each do |spot| %>
-        <%= link_to spot_path(spot) do %>
-          <div class="mt-4 py-4 mr-4 border-2 border-blue-300 shadow-md rounded-md p-3 hover:bg-gray-100">
-            <div class="flex items-center gap-3">
-              <% if spot.images[0].present? %>
-                <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-12 w-12 mx-auto", size: "30x30"%>
-              <% else %>
-                <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-12 w-12 mx-auto"%>
-              <% end %>
-              <div class="flex flex-col">
-                <span class="text-md text-slate-500 font-semibold"><%= spot.name %></span>
-                <span class="text-sm text-slate-400"><%= spot.address %></span>
+      <% if current_user.current_location.exists? %>
+        <% @neighborhood_spots.each do |spot| %>
+          <%= link_to spot_path(spot) do %>
+            <div class="mt-4 py-4 mr-4 border-2 border-blue-300 shadow-md rounded-md p-3 hover:bg-gray-100">
+              <div class="flex items-center gap-3">
+                <% if spot.images[0].present? %>
+                  <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-12 w-12 mx-auto", size: "30x30"%>
+                <% else %>
+                  <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-12 w-12 mx-auto"%>
+                <% end %>
+                <div class="flex flex-col">
+                  <span class="text-md text-slate-500 font-semibold"><%= spot.name %></span>
+                  <span class="text-sm text-slate-400"><%= spot.address %></span>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
+      <% else %>
+        <%= link_to "現在位置を登録することで周辺のスポットを検索できます",user_show_path(id: current_user.id), class: "flex bg-blue-400 hover:bg-blue-300 p-3 rounded-md text-white"  %>
       <% end %>
     </div>
   </div>
