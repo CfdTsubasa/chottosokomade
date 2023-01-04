@@ -131,12 +131,10 @@
                     </svg>
                     <p class="ml-2">: <%= spot.likes.count %></p>
                   </div>
-                  <% if current_user == @user %>
-                    <div class="flex pb-3 mt-3">
-                      <%= link_to '削除', "/spots/#{spot.id}", method: :delete,class: "px-3 py-1 mr-2 border hover:bg-gray-100 hover:white rounded-md", data: {confirm: "削除しますか？"} %>
-                      <%= link_to '編集', "/spots/#{spot.id}/edit", {class: "px-3 py-1 border hover:bg-gray-100 hover:white rounded-md"} %>
-                    </div>
-                  <% end %>
+                  <div class="flex pb-3 mt-3">
+                    <%= link_to '削除', "/spots/#{spot.id}", method: :delete,class: "px-3 py-1 mr-2 border hover:bg-gray-100 hover:white rounded-md", data: {confirm: "削除しますか？"} %>
+                    <%= link_to '編集', "/spots/#{spot.id}/edit", {class: "px-3 py-1 border hover:bg-gray-100 hover:white rounded-md"} %>
+                  </div>
                   <p class="text-xl text-end bottom-0 right-0 text-slate-600">作成日&nbsp;<%= spot.created_at.strftime('%Y/%m/%d %H:%M') %></p>
                 </div>
               </div>
