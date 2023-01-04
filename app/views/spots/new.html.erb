@@ -8,19 +8,19 @@
     <%= form_with(model: @spot, local: true) do |f| %>
       <div class="mb-5 flex flex-col">
         <%= f.label :name, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
-        <%= f.text_field :name, class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+        <%= f.text_field :name, placeholder: "紅葉が綺麗！！幕張海浜公園", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
       </div>
       <div class="mb-5 flex flex-col">
         <%= f.label :comment, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
-        <%= f.text_area :comment, class: 'form-control border col-span-5 block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500' %>
+        <%= f.text_area :comment, placeholder: "11月下旬が見頃！夜になるとライトアップも…？", class: 'form-control border col-span-5 block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500' %>
       </div>
       <div class="mb-5 flex flex-col">
         <%= f.label :address, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
-        <%= f.text_field :address, class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+        <%= f.text_field :address, placeholder: "県立幕張海浜公園", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
       </div>
       <div class="mb-5 flex flex-col">
         <%= f.label :tag_list, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
-        <%= f.text_field :tag_list, value: @spot.tag_list.join(','), class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+        <%= f.text_field :tag_list, placeholder: "○○○,xxx,▲▲▲ …", value: @spot.tag_list.join(','), class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
       </div>
       <p class="block mb-3 text-sm font-medium text-gray-900">Images</p>
       <%= f.label :images,  {for: 'file', class: 'col-span-2 block mb-2 text-sm font-medium text-gray-900'} do %>
