@@ -1,62 +1,65 @@
 <% provide(:title, resource_name.to_s.humanize) %>
-<div class="text-center">
-  <h1 class="text-3xl font-semibold underline underline-offset-8 decoration-1">プロフィール編集</h1>
+<div class="flex justify-center my-4">
+  <div class="border-double border-l-4 border-blue-500"></div>
+  <h1 class="mx-2 text-3xl font-semibold">プロフィール編集</h1>
 </div>
-<div class="block mx-48 px-32 mt-5 mb-8 relative bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name, {class: 'block mb-3 text-sm font-medium text-gray-900 dark:text-gray-300'} %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-  </div>
-
-  <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
-  <div class="field">
-    <%= f.label :profile %><br />
-    <%= f.text_area :profile, autofocus: true, class: 'w-3/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <div class="field">
-    <%= f.label :password %>(変更がない場合は空欄にしてください)<br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'w-1/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+<div class="block mx-4 sm:mx-12 md:mx-12 lg:mx-32 xl:mx-32 xl:px-32 lg:px-32 md:px-32 mt-5 mb-8 relative bg-white rounded-lg border border-gray-200 shadow-md">
+  <div class="mt-8 mx-12">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :name, {class: 'block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :email, {class: 'block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+      <div class="mb-5 flex flex-col">
+        <%= f.label :profile, {class: 'block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_area :profile, autofocus: true, class: 'w-3/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <div class="mb-5 flex flex-col">
+        <p class="block mb-3 text-sm font-medium text-gray-900">Image</p>
+        <%= f.label :image,  {for: 'file', class: 'col-span-2 block mb-2 text-sm font-medium text-gray-900'} do %>
+          <div id="uploadArea" class="flex justify-center items-center w-full">
+            <div class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer">
+              <div class="flex flex-col justify-center items-center pt-5 pb-6">
+              <%= f.file_field :image, class: 'form-control col-span-5 hidden', id: 'file' %>
+                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span></p>
+                <p class="text-xs text-gray-500">SVG, PNG, JPG, JPEG or GIF</p>
+              </div>
+            </div>
+          </div> 
+        <% end %>
+      </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <div id="password_input" class="grid grid-cols-2 flex">
+        <div class="field mb-3">
+          <div class="flex mb-3">
+            <%= f.label :password, {class: 'inline-block text-sm font-medium text-gray-900'} %>&nbsp;<p class="text-sm text-gray-900">(変更がない場合は空欄にしてください)</p>
+          </div>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'w-3/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+        </div>
+        <div class="field mb-3">
+          <%= f.label :password_confirmation, {class: 'block mb-3 text-sm font-medium text-gray-900'} %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-3/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ' %>
+        </div>
+      </div>
+      <div class="field mb-3">
+        <div class="mb-3">
+          <%= f.label :current_password, {class: 'block text-sm font-medium text-gray-900'} %><p class="text-sm text-gray-900">(変更を適用にはパスワードの入力が必要です)</p>
+        </div>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'w-1/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ' %>
+      </div>
+      <div class="actions flex justify-center my-6 gap-12">
+        <%= f.submit "プロフィールを更新する",class: 'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow' %>
+        <%= link_to "戻る", :back,class: 'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow'  %>
+      </div>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-1/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %>(変更を適用にはパスワードの入力が必要です)<br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: 'w-1/5 form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 </div>

@@ -1,8 +1,9 @@
 <% provide(:title, "探索") %>
-<div class="text-center">
-  <h1 class="text-3xl font-semibold underline underline-offset-8 decoration-1">探索</h1>
+<div class="flex justify-center my-4">
+  <div class="border-double border-l-4 border-blue-500"></div>
+  <h1 class="mx-2 text-3xl font-semibold">探索</h1>
 </div>
-<div id="search" class="mt-4 py-4 mx-24 border rounded-md p-3">
+<div id="search" class="mt-4 py-4 mx-4 sm:mx-12 md:mx-12 lg:mx-32 xl:mx-32  border rounded-md p-3">
   <div id="word" class="flex">
     <span class="text-left pl-8 mr-1 mb-3">フリーワード探索</span>
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500">
@@ -10,7 +11,7 @@
     </svg>
   </div>
   <%= form_with url: searches_search_path,class: 'flex px-8 gap-5 text-center', local: true, method: :get do |f| %>
-    <%= f.text_field :q  , class: 'form-control border col-span-5 px-8 h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    <%= f.text_field :q  , class: 'form-control border col-span-5 px-8 h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
     <%= f.submit ("探索") , class: 'border bg-slate-200 p-1'%>
   <% end %>
   <hr class="text-center mx-auto my-5 w-11/12">
@@ -45,22 +46,26 @@
       </svg>
     </div>
     <div class="flex">
-      <% @neighborhood_spots.each do |spot| %>
-        <%= link_to spot_path(spot) do %>
-          <div class="mt-4 py-4 mr-4 border-2 border-blue-300 shadow-md rounded-md p-3 hover:bg-gray-100">
-            <div class="flex items-center gap-3">
-              <% if spot.images[0].present? %>
-                <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-12 w-12 mx-auto", size: "30x30"%>
-              <% else %>
-                <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-12 w-12 mx-auto"%>
-              <% end %>
-              <div class="flex flex-col">
-                <span class="text-md text-slate-500 font-semibold"><%= spot.name %></span>
-                <span class="text-sm text-slate-400"><%= spot.address %></span>
+      <% if current_user.current_location.exists? %>
+        <% @neighborhood_spots.each do |spot| %>
+          <%= link_to spot_path(spot) do %>
+            <div class="mt-4 py-4 mr-4 border-2 border-blue-300 shadow-md rounded-md p-3 hover:bg-gray-100">
+              <div class="flex items-center gap-3">
+                <% if spot.images[0].present? %>
+                  <%= image_tag spot.images[0].url, class: "border rounded-md object-contain h-12 w-12 mx-auto", size: "30x30"%>
+                <% else %>
+                  <%= image_tag "/assets/default.png", class: "border rounded-md object-cover h-12 w-12 mx-auto"%>
+                <% end %>
+                <div class="flex flex-col">
+                  <span class="text-md text-slate-500 font-semibold"><%= spot.name %></span>
+                  <span class="text-sm text-slate-400"><%= spot.address %></span>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
+      <% else %>
+        <%= link_to "現在位置を登録することで周辺のスポットを検索できます",user_show_path(id: current_user.id), class: "flex bg-blue-400 hover:bg-blue-300 p-3 rounded-md text-white"  %>
       <% end %>
     </div>
   </div>
@@ -71,11 +76,11 @@
   <span id="divide" class="hidden">｜</span>
   <div id="result_count_users" class="my-3"></div>
 </div>
-<div class="tab_box border-gray-200 dark:border-gray-700 mb-8">
+<div class="tab_box border-gray-200 mb-8">
   <ul class="btn_area flex flex-wrap justify-center mx-auto my-5 border-b text-sm font-medium text-center text-gray-500 dark:text-gray-400">
     <div id="spot_tab" class="tab_btn border-b-2 border-blue-600 active">
-      <div class="inline-flex p-4 rounded-t-lg  text-blue-600 dark:text-blue-500 dark:border-blue-500">
-        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <div class="inline-flex p-4 rounded-t-lg  text-blue-600">
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
         </svg>
@@ -83,8 +88,8 @@
       </div>
     </div>
     <div id="user_tab" class="tab_btn">
-      <div class="inline-flex p-4 rounded-t-lg text-blue-600 dark:text-blue-500 dark:border-blue-500" aria-current="page">
-        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600 dark:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>ユーザー
+      <div class="inline-flex p-4 rounded-t-lg text-blue-600" aria-current="page">
+        <svg aria-hidden="true" class="mr-2 w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>ユーザー
       </div>
     </div>
   </ul>
@@ -92,7 +97,7 @@
     <div class="tab_panel active">
       <div id="spots">
         <% if current_user and @spots.present? %>
-          <div class="grid lg:grid-cols-3 md:grid-cols-2 px-7">
+          <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:px-1 lg:px-7">
             <% @spots.each do |spot| %>
               <div class="p-3">
                 <%= link_to spot_path(spot) , {class: "block p-6 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"} do%>
@@ -102,8 +107,8 @@
                     <%= image_tag "/assets/default.png", class: "object-cover h-48 w-80 mx-auto"%>
                   <% end %>
                   <div>
-                    <h5 class="mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 bg-gray-200 dark:text-white"><%= spot.name %></h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= spot.comment %></p>
+                    <h5 class="mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 bg-gray-200"><%= spot.name %></h5>
+                    <p class="font-normal text-gray-700"><%= spot.comment %></p>
                   </div>
                   <div id="tags" class="my-2 flex flex-wrap gap-y-2 gap-x-1">
                     <% spot.tag_counts_on(:tags).each do |tag| %>
@@ -157,7 +162,7 @@
       <div id="users">
         <% if current_user and @users.present? %>
           <% @users.each do |user| %>      
-            <%= link_to user_show_path(user) , {class: "block p-1 mx-24 mt-4 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"} do%>
+            <%= link_to user_show_path(user) , {class: "block p-1 mx-24 mt-4 max-w-lgxl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"} do%>
               <div class="grid grid-cols-7 p-3">
                 <div class="col-span-2">
                   <% if user.image.present? %>

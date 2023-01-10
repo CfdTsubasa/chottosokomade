@@ -10,17 +10,24 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
     <%= favicon_link_tag('person.ico') %>
   </head>
-
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
-      <%= yield %>
+    <%= yield %>
+    <% if Rails.env.development? %>
+      <div class="responsive_size text-3xl font-semibold text-gray-500">
+        <span class="responsive_size_sm hidden">SM</span>
+        <span class="responsive_size_md hidden">MD</span>
+        <span class="responsive_size_lg hidden">LG</span>
+        <span class="responsive_size_xl hidden">XL</span>
+      </div>
+    <% end %>
   </body>
 </html>

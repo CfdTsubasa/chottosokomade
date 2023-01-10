@@ -1,0 +1,66 @@
+<% if current_user.present? %>
+  <li>
+    <%= link_to spots_path do %>
+      <span>最新投稿一覧</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+      </svg>
+    <% end %>
+  </li><span class="devide">｜</span>
+  <li>
+    <%= link_to spots_following_users_spots_path do %>
+      <span>フォロー中のユーザー投稿</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+      </svg>
+    <% end %>
+  </li><span class="devide">｜</span>
+  <li>
+    <%= link_to new_spot_path do %>
+      <span>投稿する</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+      </svg>
+    <% end %>
+  </li><span class="devide">｜</span>
+  <li>
+    <%= link_to searches_search_path do %>
+    <span>探索する</span>
+    </span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+    </svg>
+    <% end %>
+  </li><span class="devide">｜</span>
+  <li>
+    <%= link_to destroy_user_session_path do %>
+      <span>ログアウト</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+      </svg>
+    <% end %>
+  </li><span class="devide">｜</span>
+  <li class="icon-circle-header full-screen">
+    <%= link_to user_show_path(id: current_user.id) do %>
+      <% if current_user.image.present? %>
+        <%= image_tag current_user.image.url,:class=> 'icon-circle-header mr-4' %>
+      <% else %>
+        <%= image_tag 'person.png',:class=> 'icon-circle-header mr-4' %>
+      <% end %>
+    <% end %>
+  </li>
+  <li class="small-screen">
+    <%= link_to user_show_path(id: current_user.id) do %>
+      <div class="flex justify-center items-center">
+        <span>マイページ</span>
+        <% if current_user.image.present? %>
+          <%= image_tag current_user.image.url,:class=> 'icon-circle-navbar ml-3' %>
+        <% else %>
+          <%= image_tag 'person.png',:class=> 'icon-circle-navbar ml-3' %>
+        <% end %>
+      </div>
+    <% end %>
+  </li>
+<% else %>
+  <li class="font-semibold"><%= link_to "ログイン", user_session_path %></li>
+<% end %>

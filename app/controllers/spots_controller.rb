@@ -1,8 +1,6 @@
 class SpotsController < ApplicationController
   def index
-    # @spots = Spot.order("RANDOM()").all
-    @spots = Spot.all.order(id: "DESC")
-    
+    @spots = Spot.all.order(id: "DESC").page(params[:page]).per(21)
   end
 
   def new
@@ -12,7 +10,7 @@ class SpotsController < ApplicationController
   def create
     spot = Spot.new(spot_params)
     if spot.save!
-      redirect_to root_path,notice: '登録しました'
+      redirect_to root_path,notice: '投稿が完了しました'
     else
       redirect_to spots_path
     end
@@ -35,13 +33,18 @@ class SpotsController < ApplicationController
   def update
     spot = Spot.find(params[:id])
     spot.update!(spot_params)
-    redirect_to spots_url, notice: "タスク「#{spot.name}」を更新しました。"
+    redirect_to spots_url, notice: "スポット「#{spot.name}」を更新しました。"
   end
 
   def destroy
     spot = Spot.find(params[:id])
+    spotName = spot.name
     spot.destroy
-    redirect_to spots_url
+    redirect_to user_show_path(current_user), notice: "スポット「#{spotName}」を削除しました。"
+  end
+
+  def following_users_spots
+    @spots = current_user.following_users_spots.order(id: "DESC").page(params[:page]).per(21)
   end
 
   private 

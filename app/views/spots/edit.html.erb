@@ -1,20 +1,30 @@
 <% provide(:title, "スポット編集") %>
-<h1>スポット編集</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="flex justify-center my-4">
+  <div class="border-double border-l-4 border-blue-500"></div>
+  <h1 class="mx-2 text-3xl font-semibold">スポット編集</h1>
+</div>
+<div class="block mx-4 sm:mx-12 md:mx-12 lg:mx-32 xl:mx-32 xl:px-32 lg:px-32 md:px-32 mt-5 mb-8 relative bg-white rounded-lg border border-gray-200 shadow-md">
+  <div class="mt-8 mx-12">
     <%= form_with(model: @spot, local: true) do |f| %>
-      <%# <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control border' %>
-
-      <%= f.label :comment %>
-      <%= f.text_area :comment, class: 'form-control border' %>
-
-      <%= f.label :images %>
-      <%= f.file_field :images, multiple: true %>
-
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :name, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_field :name, placeholder: "紅葉が綺麗！！幕張海浜公園", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :comment, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_area :comment, placeholder: "11月下旬が見頃！夜になるとライトアップも…？", class: 'form-control border col-span-5 block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500' %>
+      </div>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :address, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_area :address, placeholder: "県立幕張海浜公園", class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <div class="mb-5 flex flex-col">
+        <%= f.label :tag_list, {class: 'col-span-2 block mb-3 text-sm font-medium text-gray-900'} %>
+        <%= f.text_field :tag_list, placeholder: "○○○,xxx,▲▲▲ …", value: @spot.tag_list.join(','), class: 'form-control border col-span-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+      </div>
+      <div class="text-center mt-10 mb-16">
+        <%= f.submit "編集を更新する", class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+      </div>
     <% end %>
   </div>
 </div>

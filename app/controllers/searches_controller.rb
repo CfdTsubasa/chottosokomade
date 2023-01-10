@@ -3,7 +3,9 @@ class SearchesController < ApplicationController
     @q = params[:q]
     @users = User.ransack(name_cont: @q).result
     @tags = Spot.tag_counts_on(:tags).most_used(20)
-    @neighborhood_spots = Spot.within_box(5, 35.645856, 140.036135)
+    if current_user.current_location.present?
+      @neighborhood_spots = Spot.within_box(1.86411, current_user.current_location.last.latitude, current_user.current_location.last.longitude).limit(4)
+    end
     if params[:tags]
       @spots = Spot.tagged_with(params[:tags])
     else

@@ -1,7 +1,7 @@
-<% provide(:title, "最新投稿一覧") %>
+<% provide(:title, "フォロー中のユーザー投稿") %>
 <div class="flex justify-center my-4">
   <div class="border-double border-l-4 border-blue-500"></div>
-  <h1 class="mx-2 text-3xl font-semibold">最新投稿一覧</h1>
+  <h1 class="mx-2 text-3xl font-semibold">フォロー中のユーザー投稿</h1>
 </div>
 <%= paginate @spots %>
 <% if current_user and @spots.present? %>
