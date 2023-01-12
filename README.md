@@ -20,7 +20,7 @@
     お名前、メールアドレス、パスワードを入力してユーザー登録を完了させてください。
     ![chottosokomade usage(1)](https://user-images.githubusercontent.com/78243094/212095853-ff3b8c7e-c235-44ce-b0c2-0b6f10e2ae2a.png)
   - 2,現在位置情報取得
-    ↓ のデモを参考に現在位置情報取得&保存してください。
+    [デモ](#デモ)を参考に現在位置情報取得&保存してください。
     ![chottosokomade usage(2)](https://user-images.githubusercontent.com/78243094/212095879-931fcc24-e326-4b9e-a75c-6573f56020ab.png)
   - 3,投稿・探索・閲覧を楽しんでください！散歩で健康ライフを！
     ![chottosokomade usage(3)](https://user-images.githubusercontent.com/78243094/212096217-1052cbf5-2ee3-402f-b5d2-21a63df3ff3f.png)
@@ -40,7 +40,7 @@
 
   このアプリは大きく分けて「投稿」、「探索」、「投稿スポット閲覧」の ３つの機能をメインとします。
 
-  ### 投稿
+  ### 投稿(https://chottosokomade.uk/spots/new)
 
   - おすすめスポット名(Name)
     公園/レストラン/カフェ/景色がいい場所/ショッピングセンター などなど
@@ -59,7 +59,7 @@
     イメージ画像最大 3 枚まで添付することができます。
     せっかく撮った思い出の場所の写真、みんなに共有しませんか？
 
-  ### 探索
+  ### 探索(https://chottosokomade.uk/searches/search)
 
   - フリーワード探索
     スポット、ユーザーの一括検索が可能です。
@@ -72,7 +72,7 @@
     往復にちょうどいい距離「半径 3km 圏内」のスポットを最大 4 件表示しています。
     お手軽に散歩を楽しみたい人も、近場を探索したい人にもピッタリ！
 
-  ### 投稿スポット閲覧
+  ### 投稿スポット閲覧(https://chottosokomade.uk/spots)
 
   - スポット名
 
@@ -98,11 +98,11 @@
 
   視覚的なわかりやすさを重視してアプリを作成しました。
   特にこだわった点は、スポット詳細画面のマップです。
-  スポット所在地はもちろん、そこに至るまでの徒歩での所要時間、歩行経路を一目でわかるように作っています。
 
   - Google Map との API 連携でルートを想像可能に
     散歩ならではの楽しみとしてコースの景色が挙げられます。埋め込まれている Google Map の機能を用いて
     人型のアイコンをドラッグ＆ドロップして地図上に置くことで、ルートの雰囲気を想像することができるようになっています。
+    スポット所在地はもちろん、そこに至るまでの徒歩での所要時間、歩行経路を一目でわかるようになっています！
 
     ![chottosokomade Map1](https://user-images.githubusercontent.com/78243094/212068279-4b58ba4c-742c-41b3-bd96-ae8d1d1d4dce.png)
     ![chottosokomade Map2](https://user-images.githubusercontent.com/78243094/212068309-0f7c18d9-38ec-4c0f-b2a2-b8bb45d83021.png)
@@ -113,5 +113,14 @@
     家の近場に思わぬ穴場を見つけられるかもかもしれません。
 
     ![chottosokomade nearSpot](https://user-images.githubusercontent.com/78243094/212070884-9be61827-df08-4835-80c5-cbcd5cb35d32.png)
+
+  - 気になるユーザーの投稿を見逃さない！
+    「follow」ボタンを押すことで[フォロー中のユーザー投稿](https://chottosokomade.uk/spots/following_users_spots)にユーザーの投稿が追加されます。あなたの投稿、見逃さない…！
+
+    ![chottosokomade follow](https://user-images.githubusercontent.com/78243094/212101453-33d0bc06-22e9-4d24-ab6e-dbdf9e731019.png)
+
+    ### フォロー中のユーザー投稿(https://chottosokomade.uk/spots/following_users_spots)
+
+    ![chottosokomade following](https://user-images.githubusercontent.com/78243094/212102106-8cf0d8b7-5220-45cc-99f7-033f187c3bf2.png)
 
 # chottosokomade
