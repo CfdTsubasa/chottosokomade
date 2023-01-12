@@ -119,7 +119,7 @@
 
     ![chottosokomade follow](https://user-images.githubusercontent.com/78243094/212101453-33d0bc06-22e9-4d24-ab6e-dbdf9e731019.png)
 
-    ### フォロー中のユーザー投稿(https://chottosokomade.uk/spots/following_users_spots)
+    #### フォロー中のユーザー投稿(https://chottosokomade.uk/spots/following_users_spots)
 
     ![chottosokomade following](https://user-images.githubusercontent.com/78243094/212102106-8cf0d8b7-5220-45cc-99f7-033f187c3bf2.png)
 
