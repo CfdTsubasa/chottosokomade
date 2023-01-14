@@ -40,7 +40,7 @@
 
   このアプリは大きく分けて「投稿」、「探索」、「投稿スポット閲覧」の ３つの機能をメインとします。
 
-  ### 投稿(https://chottosokomade.uk/spots/new)
+  ### 投稿(https://chottosokomade.link/spots/new)
 
   - おすすめスポット名(Name)
     公園/レストラン/カフェ/景色がいい場所/ショッピングセンター などなど
@@ -59,7 +59,7 @@
     イメージ画像最大 3 枚まで添付することができます。
     せっかく撮った思い出の場所の写真、みんなに共有しませんか？
 
-  ### 探索(https://chottosokomade.uk/searches/search)
+  ### 探索(https://chottosokomade.link/searches/search)
 
   - フリーワード探索
     スポット、ユーザーの一括検索が可能です。
@@ -72,7 +72,7 @@
     往復にちょうどいい距離「半径 3km 圏内」のスポットを最大 4 件表示しています。
     お手軽に散歩を楽しみたい人も、近場を探索したい人にもピッタリ！
 
-  ### 投稿スポット閲覧(https://chottosokomade.uk/spots)
+  ### 投稿スポット閲覧(https://chottosokomade.link/spots)
 
   - スポット名
 
@@ -115,11 +115,11 @@
     ![chottosokomade nearSpot](https://user-images.githubusercontent.com/78243094/212070884-9be61827-df08-4835-80c5-cbcd5cb35d32.png)
 
   - 気になるユーザーの投稿を見逃さない！
-    「follow」ボタンを押すことで[フォロー中のユーザー投稿](https://chottosokomade.uk/spots/following_users_spots)にユーザーの投稿が追加されます。あなたの投稿、見逃さない…！
+    「follow」ボタンを押すことで[フォロー中のユーザー投稿](https://chottosokomade.link/spots/following_users_spots)にユーザーの投稿が追加されます。あなたの投稿、見逃さない…！
 
     ![chottosokomade follow](https://user-images.githubusercontent.com/78243094/212101453-33d0bc06-22e9-4d24-ab6e-dbdf9e731019.png)
 
-    #### フォロー中のユーザー投稿(https://chottosokomade.uk/spots/following_users_spots)
+    #### フォロー中のユーザー投稿(https://chottosokomade.link/spots/following_users_spots)
 
     ![chottosokomade following](https://user-images.githubusercontent.com/78243094/212102106-8cf0d8b7-5220-45cc-99f7-033f187c3bf2.png)
 
